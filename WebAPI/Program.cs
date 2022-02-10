@@ -3,6 +3,7 @@ using Application.Mappings;
 using Application.Services;
 using Domain.Interfaces;
 using Infrastructure.Repositories;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IPostRepository, PostRepository>();
 builder.Services.AddScoped<IPostService, PostService>();
 
-builder.Services.AddSingleton(AutoMapperConfig.Initialize());
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
