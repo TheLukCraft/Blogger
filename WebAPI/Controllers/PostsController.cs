@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using Application.Dto;
+using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -20,7 +21,7 @@ namespace WebAPI.Controllers
             var posts = _postService.GetAllPosts();
             return Ok(posts);
         }
-        [SwaggerOperation(Summary = "Retrieves a specific post by uniqye id")]
+        [SwaggerOperation(Summary = "Retrieves a specific post by unique id")]
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -28,6 +29,13 @@ namespace WebAPI.Controllers
             if (post == null)
                 return NotFound();
             return Ok(post);
+        }
+        [SwaggerOperation(Summary ="Create a new psot.")]
+        [HttpPost]
+        public IActionResult Create(CreatePostDto newPost)
+        {
+            var post = _postService.AddNewPost(newPost);
+            return Created($"api/posts/{post.Id}", post);
         }
     }
 }
