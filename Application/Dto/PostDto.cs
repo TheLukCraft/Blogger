@@ -1,5 +1,6 @@
 ﻿using Application.Mappings;
 using AutoMapper;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace Application.Dto
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<PostDto, PostDto>();
+            profile.CreateMap<Post, PostDto>();
         }
     }
 }
