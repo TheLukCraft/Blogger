@@ -5,7 +5,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace WebAPI.Controllers.V1
 {
-    [Route("api/[controller]")]
+    [Route("api/{v:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
     [ApiController]
     public class PostsController : Controller
