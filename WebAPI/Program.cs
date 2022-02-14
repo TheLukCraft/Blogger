@@ -3,6 +3,7 @@ using Application.Mappings;
 using Application.Services;
 using Domain.Interfaces;
 using Infrastructure.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,8 +13,13 @@ builder.Services.AddScoped<IPostRepository, PostRepository>();
 builder.Services.AddScoped<IPostService, PostService>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
-
 builder.Services.AddControllers();
+builder.Services.AddApiVersioning(x =>
+{
+    x.DefaultApiVersion = new ApiVersion(1, 0);
+    x.AssumeDefaultVersionWhenUnspecified = true;
+    x.ReportApiVersions = true;
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen( x =>

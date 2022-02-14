@@ -3,9 +3,10 @@ using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace WebAPI.Controllers
+namespace WebAPI.Controllers.V1
 {
     [Route("api/[controller]")]
+    [ApiVersion("1.0")]
     [ApiController]
     public class PostsController : Controller
     {
